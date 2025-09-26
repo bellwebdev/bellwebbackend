@@ -1,19 +1,14 @@
 from fastapi import FastAPI
+from dotenv import load_dotenv
 import databases
 import os
 
+load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 database = databases.Database(DATABASE_URL)
 app = FastAPI()
 
-@app.on_event("startup")
-async def startup():
-    await database.connect()
-
-@app.on_event("shutdown")
-async def shutdown():
-    await database.disconnect()
 
 @app.get("/health")
 async def health():
