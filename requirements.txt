@@ -1,0 +1,5 @@
+fastapi
+uvicorn[standard]
+databases[postgresql]
+asyncpg
+python-dotenv
